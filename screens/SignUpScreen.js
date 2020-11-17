@@ -1,167 +1,118 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  ScrollView,
-  Linking,
-} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
+import {ScrollView, Linking} from 'react-native';
+import styled from 'styled-components';
+import Input from '../form/InputText';
 
-const SignUpScreen = () => {
+const SignUp = () => {
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.text_header}>Enter your details</Text>
-        <Text style={styles.mini_text_header}>
+    <Container>
+      <Header>
+        <TextHeader>Enter your details</TextHeader>
+        <InnerTextHeader>
           This info will be displayed to drivers offering the ride
-        </Text>
-      </View>
-      <View style={styles.footer}>
+        </InnerTextHeader>
+      </Header>
+      <Footer>
         <ScrollView>
-          <Text style={styles.text_footer}>First name</Text>
-          <View style={styles.action}>
-            <TextInput
-              placeholder="Enter your first name"
-              style={styles.textInput}
-              autoCapitalize="none"
-            />
-          </View>
-          <Text style={[styles.text_footer, {marginTop: 35}]}>Last name</Text>
-          <View style={styles.action}>
-            <TextInput
-              placeholder="Enter your last name"
-              secureTextEntry={true}
-              style={styles.textInput}
-              autoCapitalize="none"
-            />
-          </View>
-          <Text style={[styles.text_footer, {marginTop: 35}]}>Email</Text>
-          <View style={styles.action}>
-            <TextInput
+          <Action>
+            <Input placeholder="Enter your first name" label="First name" />
+          </Action>
+          <Action>
+            <Input placeholder="Enter your last name" label="Last name" />
+          </Action>
+          <Action>
+            <Input
               placeholder="Enter your email address"
-              secureTextEntry={true}
-              style={styles.textInput}
-              autoCapitalize="none"
+              label="Email address"
             />
-          </View>
-          <Text style={[styles.text_footer, {marginTop: 35}]}>Phone</Text>
-          <View style={styles.action}>
-            <TextInput
-              placeholder="Mobile phone number"
-              secureTextEntry={true}
-              style={styles.textInput}
-              autoCapitalize="none"
-            />
-          </View>
-          <Text style={[styles.text_footer, {marginTop: 35}]}>City</Text>
-          <View style={styles.action}>
-            <TextInput
-              placeholder="Which city do you reside"
-              secureTextEntry={true}
-              style={styles.textInput}
-              autoCapitalize="none"
-            />
-          </View>
-          <View style={styles.button}>
-            <LinearGradient
-              colors={['#007FFF', '#1F75FE']}
-              style={styles.signUp}>
-              <Text style={[styles.textSignup, {color: '#fff'}]}>Sign In</Text>
-            </LinearGradient>
-          </View>
-          <View style={styles.textLogin}>
-            <Text style={styles.signupText}>
+          </Action>
+          <Action>
+            <Input placeholder="Mobile phone number" label="Phone" />
+          </Action>
+          <Action>
+            <Input placeholder="Which city do you reside" label="City" />
+          </Action>
+          <ButtonContainer>
+            <Signup>
+              <TextSignup>Submit</TextSignup>
+            </Signup>
+          </ButtonContainer>
+          <TextLogin>
+            <SignupText>
               Already signed up ?
-              <Text
-                style={styles.loginLink}
-                oPress={() => Linking.openURL('http://google.com')}>
+              <LoginLink oPress={() => Linking.openURL('http://google.com')}>
                 Login
-              </Text>
-            </Text>
-          </View>
+              </LoginLink>
+            </SignupText>
+          </TextLogin>
         </ScrollView>
-      </View>
-    </View>
+      </Footer>
+    </Container>
   );
 };
 
-export default SignUpScreen;
+export default SignUp;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    height: 100,
-  },
-  header: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    paddingHorizontal: 20,
-    paddingBottom: 20,
-    marginTop: -60,
-  },
-  footer: {
-    flex: 3,
-    backgroundColor: '#fff',
-    paddingHorizontal: 20,
-    paddingVertical: 30,
-  },
-  text_header: {
-    color: '#000',
-    fontWeight: 'bold',
-    fontSize: 20,
-  },
-  mini_text_header: {
-    color: 'grey',
-    fontSize: 14,
-    paddingTop: 5,
-    width: '82%',
-  },
-  text_footer: {
-    color: '#000000',
-    fontSize: 18,
-    marginBottom: 5,
-  },
-  action: {
-    flexDirection: 'row',
-    marginTop: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f2f2f2',
-    paddingBottom: 5,
-  },
-  textInput: {
-    flex: 1,
-    marginTop: -12,
-    paddingLeft: 16,
-    color: '#85375a',
-    backgroundColor: '#fdfbfb',
-    borderRadius: 5,
-  },
-  button: {
-    alignItems: 'center',
-    marginTop: 50,
-  },
-  signUp: {
-    width: '100%',
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-  },
-  textSignup: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  textLogin: {
-    alignItems: 'center',
-  },
-  signupText: {
-    color: 'grey',
-  },
-  loginLink: {
-    color: '#1F75FE',
-  },
-});
+const Container = styled.View`
+  flex: 1;
+  background-color: #fff;
+  height: 100px;
+  padding: 20px;
+`;
+
+const Header = styled.View`
+  flex: 1;
+  justify-content: flex-end;
+  margin-top: -60px;
+`;
+const Footer = styled.View`
+  flex: 3;
+  background-color: #fff;
+`;
+const TextHeader = styled.Text`
+  color: #000;
+  font-weight: bold;
+  font-size: 25px;
+  padding-left: 5px;
+`;
+const InnerTextHeader = styled.Text`
+  color: grey;
+  font-size: 14px;
+  padding-top: 5px;
+  padding-left: 5px;
+  width: 87%;
+`;
+
+const Action = styled.View`
+  flex-direction: row;
+  margin-top: 10px;
+  padding-bottom: 5px;
+`;
+
+const ButtonContainer = styled.View`
+  align-items: center;
+  margin-top: 50px;
+`;
+const Signup = styled.View`
+  width: 100%;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #1f75fe;
+`;
+const TextSignup = styled.Text`
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+`;
+const TextLogin = styled.View`
+  align-items: center;
+`;
+const SignupText = styled.Text`
+  color: grey;
+`;
+const LoginLink = styled.Text`
+  color: #1f75fe;
+`;
